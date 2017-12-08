@@ -134,7 +134,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Martz90-Circle-Addon2-Notepad.ico" />
+    <Resource Include="Resources\icon.ico" />
     <Resource Include="Martz90-Circle-Addon2-Notepad.ico" />
     <Content Include="packages\AvalonEdit.5.0.4\lib\Net35\ICSharpCode.AvalonEdit.dll" />
     <Resource Include="packages\AvalonEdit.5.0.4\lib\Net35\ICSharpCode.AvalonEdit.xml" />
