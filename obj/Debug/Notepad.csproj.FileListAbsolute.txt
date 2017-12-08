@@ -21,3 +21,9 @@ C:\Users\K Zeus\Documents\Visual Studio 2015\Projects\Notepad\bin\Debug\MahApps.
 C:\Users\K Zeus\Documents\Visual Studio 2015\Projects\Notepad\obj\Debug\App.baml
 C:\Users\K Zeus\Documents\Visual Studio 2015\Projects\Notepad\obj\Debug\MoreAboutUs.g.cs
 C:\Users\K Zeus\Documents\Visual Studio 2015\Projects\Notepad\obj\Debug\MoreAboutUs.baml
+C:\Users\K Zeus\Documents\Visual Studio 2015\Projects\Notepad\obj\Debug\Notepad.csproj.Notepad.exe.config
+C:\Users\K Zeus\Documents\Visual Studio 2015\Projects\Notepad\obj\Debug\Notepad_Content.g.cs
+C:\Users\K Zeus\Documents\Visual Studio 2015\Projects\Notepad\bin\Debug\ICSharpCode.AvalonEdit.dll
+C:\Users\K Zeus\Documents\Visual Studio 2015\Projects\Notepad\bin\Debug\ICSharpCode.AvalonEdit.xml
+C:\Users\K Zeus\Documents\Visual Studio 2015\Projects\Notepad\obj\Debug\ChangeFont.g.cs
+C:\Users\K Zeus\Documents\Visual Studio 2015\Projects\Notepad\obj\Debug\ChangeFont.baml

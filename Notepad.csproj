@@ -39,6 +39,10 @@
       <HintPath>packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ICSharpCode.AvalonEdit, Version=5.0.3.0, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
+      <HintPath>packages\AvalonEdit.5.0.4\lib\Net40\ICSharpCode.AvalonEdit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="MahApps.Metro, Version=1.6.0.184, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\MahApps.Metro.1.6.0-alpha0184\lib\net45\MahApps.Metro.dll</HintPath>
       <Private>True</Private>
@@ -68,6 +72,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="ChangeFont.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -75,6 +83,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ChangeFont.xaml.cs">
+      <DependentUpon>ChangeFont.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -107,6 +118,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="packages.config" />
+    <None Include="packages\AvalonEdit.5.0.4\AvalonEdit.5.0.4.nupkg" />
+    <None Include="packages\ControlzEx.3.0.2.4\ControlzEx.3.0.2.4.nupkg" />
+    <None Include="packages\MahApps.Metro.1.6.0-alpha0184\MahApps.Metro.1.6.0-alpha0184.nupkg" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -116,7 +130,29 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="packages\AvalonEdit.5.0.4\lib\Net35\ICSharpCode.AvalonEdit.dll" />
+    <Resource Include="packages\AvalonEdit.5.0.4\lib\Net35\ICSharpCode.AvalonEdit.xml" />
+    <Content Include="packages\AvalonEdit.5.0.4\lib\Net40\ICSharpCode.AvalonEdit.dll" />
+    <Resource Include="packages\AvalonEdit.5.0.4\lib\Net40\ICSharpCode.AvalonEdit.xml" />
+    <Content Include="packages\ControlzEx.3.0.2.4\ControlzEx.3.0.2.4.license.html" />
+    <Content Include="packages\ControlzEx.3.0.2.4\lib\net40\ControlzEx.dll" />
+    <Content Include="packages\ControlzEx.3.0.2.4\lib\net40\ControlzEx.pdb" />
+    <Content Include="packages\ControlzEx.3.0.2.4\lib\net40\System.Windows.Interactivity.dll" />
+    <Content Include="packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll" />
+    <Content Include="packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.pdb" />
+    <Content Include="packages\ControlzEx.3.0.2.4\lib\net45\System.Windows.Interactivity.dll" />
+    <Content Include="packages\ControlzEx.3.0.2.4\lib\net462\ControlzEx.dll" />
+    <Content Include="packages\ControlzEx.3.0.2.4\lib\net462\ControlzEx.pdb" />
+    <Content Include="packages\ControlzEx.3.0.2.4\lib\net462\System.Windows.Interactivity.dll" />
+    <Resource Include="packages\ControlzEx.3.0.2.4\[Content_Types].xml" />
+    <Content Include="packages\MahApps.Metro.1.6.0-alpha0184\lib\net40\MahApps.Metro.dll" />
+    <Content Include="packages\MahApps.Metro.1.6.0-alpha0184\lib\net40\MahApps.Metro.pdb" />
+    <Resource Include="packages\MahApps.Metro.1.6.0-alpha0184\lib\net40\MahApps.Metro.XML" />
+    <Content Include="packages\MahApps.Metro.1.6.0-alpha0184\lib\net45\MahApps.Metro.dll" />
+    <Content Include="packages\MahApps.Metro.1.6.0-alpha0184\lib\net45\MahApps.Metro.pdb" />
+    <Resource Include="packages\MahApps.Metro.1.6.0-alpha0184\lib\net45\MahApps.Metro.XML" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\me_small.jpg" />
   </ItemGroup>

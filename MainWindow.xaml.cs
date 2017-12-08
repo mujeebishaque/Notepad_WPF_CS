@@ -1,9 +1,7 @@
 ﻿using MahApps.Metro.Controls;
 using Microsoft.Win32;
 using System;
-using System.IO;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Documents;
 
 namespace Notepad
@@ -18,7 +16,6 @@ namespace Notepad
         {
             InitializeComponent();
             richtextbox.SetValue(Paragraph.LineHeightProperty, 1.0);
-            richtextbox.FontFamily = new System.Windows.Media.FontFamily("Times New Roman");
         }
 
         private void MenuItem_Click(object sender, RoutedEventArgs e)
@@ -26,13 +23,13 @@ namespace Notepad
             // Method to save stuff in your text editor
             var saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Text Files (*.txt)|*.txt";
-            TextRange range;
-            range = new TextRange(richtextbox.Document.ContentStart, richtextbox.Document.ContentEnd);
-            string text = range.Text;
+            //TextRange range;
+            //range = new TextRange(richtextbox.Document.ContentStart, richtextbox.Document.ContentEnd);
+            //string text = range.Text;
 
             if (saveFileDialog.ShowDialog() == true)
             {
-                File.WriteAllText(saveFileDialog.FileName, text);
+                //  File.WriteAllText(saveFileDialog.FileName, text);
             }
         }
 
@@ -52,33 +49,36 @@ namespace Notepad
             openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             openFileDialog.Multiselect = false;
 
-            TextRange range;
-            range = new TextRange(richtextbox.Document.ContentStart, richtextbox.Document.ContentEnd);
-            string text = range.Text;
+            //TextRange range;
+            //range = new TextRange(richtextbox.Document.ContentStart, richtextbox.Document.ContentEnd);
+            //string text = range.Text;
 
 
             if (openFileDialog.ShowDialog() == true)
             {
-                richtextbox.Document.Blocks.Clear();
+                //  richtextbox.Document.Blocks.Clear();
             }
 
         }
 
         private void MenuItem_Click_6(object sender, RoutedEventArgs e)
         {   /*AboutMe Notepad*/
-            //const string aboutMe = "The name's Mujeeb. Professional Programmer from Lahore. Email me @ nhawk1100@gmail.com";
-
-            //MessageBoxResult result = MessageBox.Show(aboutMe, "About Us", MessageBoxButton.OK, MessageBoxImage.Information);
             var aboutWindow = new MoreAboutUs();
             aboutWindow.Show();
         }
 
         private void MenuItem_Click_7(object sender, RoutedEventArgs e)
         {
-            /*font size*/
+            /*font size
             TextRange allText = new TextRange(richtextbox.Document.ContentStart, richtextbox.Document.ContentEnd);
-            allText.ApplyPropertyValue(RichTextBox.FontSizeProperty, FontSize += 2);
+            allText.ApplyPropertyValue(RichTextBox.FontSizeProperty, FontSize += 1);
+            */
+        }
 
+        private void ChangeFont_Click(object sender, RoutedEventArgs e)
+        {
+            var changeFontWindow = new ChangeFont();
+            changeFontWindow.Show();
         }
     }
 }

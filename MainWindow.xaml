@@ -11,6 +11,7 @@
         BorderThickness="2"
         WindowStartupLocation="CenterScreen"
         SaveWindowPosition="True"
+        WindowState="Maximized"
         TitleCaps="False"
         TitlebarHeight="36"
         Title="iNotepad" Height="450" Width="585">
@@ -20,12 +21,19 @@
             <RowDefinition />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="26"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
         <Menu Padding="4"
               Grid.Row="0"
+              Grid.Column="0"
+              Grid.ColumnSpan="2"
               BorderBrush="Black"
               BorderThickness="1">
 
-            <MenuItem Header="File" Margin="5 0 5 0"
+            <MenuItem Header="File"
+                      Margin="5 0 5 0"
                       FontWeight="DemiBold"
                       FontSize="14">
                 <MenuItem Header="Open"
@@ -33,7 +41,7 @@
                           Click="MenuItem_Click_5" />
                 <MenuItem Header="Save"
                           Click="MenuItem_Click"
-                          FontWeight="Regular"/>
+                          FontWeight="Regular" />
                 <MenuItem Header="Exit"
                           FontWeight="Regular"
                           Click="MenuItem_Click_4" />
@@ -51,9 +59,10 @@
                 <MenuItem Header="Paste"
                           FontWeight="Regular"
                           Click="MenuItem_Click_3" />
-                <MenuItem Header="Increase Font"
+                <MenuItem Header="Change Font"
+                          Name="ChangeFont"
                           FontWeight="Regular"
-                          Click="MenuItem_Click_7" />
+                          Click="ChangeFont_Click" />
             </MenuItem>
             <MenuItem Header="About"
                       Margin="5 0 5 0"
@@ -63,18 +72,30 @@
                           FontWeight="Regular"
                           Click="MenuItem_Click_6" />
             </MenuItem>
-            
-        </Menu>
 
-        <RichTextBox Grid.Row="1"
+        </Menu>
+        <avalonEdit:TextEditor     
+            Grid.Row="1"
+            Grid.Column="1"
+            SyntaxHighlighting="C++"
+            Padding="1"
+            FontSize="14"
+            ShowLineNumbers="True"
+            Name="richtextbox"
+            xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit">
+            
+        
+        </avalonEdit:TextEditor>
+        <!--<RichTextBox Grid.Row="1"
+                     Grid.Column="1"
                      Padding="1"
                      SpellCheck.IsEnabled="True"
                      Name="richtextbox">
-        </RichTextBox>
-        
-        
+        </RichTextBox> -->     
         <StatusBar Grid.Row="2"
                    Padding="5"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="2"
                    BorderBrush="Gray"
                    BorderThickness="1">
             <StatusBarItem HorizontalAlignment="Left">
