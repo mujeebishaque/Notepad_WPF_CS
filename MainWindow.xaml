@@ -15,6 +15,15 @@
         TitleCaps="False"
         TitlebarHeight="36"
         Title="iNotepad" Height="450" Width="585">
+    <Window.CommandBindings>
+        <CommandBinding Command="Save"
+                        Executed="CommandBinding_Executed" />
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Key="S"
+                    Modifiers="Ctrl"
+                    Command="Save" />
+    </Window.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -40,6 +49,8 @@
                           FontWeight="Regular"
                           Click="MenuItem_Click_5" />
                 <MenuItem Header="Save"
+                          Command="Save"
+                          InputGestureText=""
                           Click="MenuItem_Click"
                           FontWeight="Regular" />
                 <MenuItem Header="Exit"

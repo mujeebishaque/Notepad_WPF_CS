@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Martz90-Circle-Addon2-Notepad.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll</HintPath>
@@ -131,6 +134,8 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Martz90-Circle-Addon2-Notepad.ico" />
+    <Resource Include="Martz90-Circle-Addon2-Notepad.ico" />
     <Content Include="packages\AvalonEdit.5.0.4\lib\Net35\ICSharpCode.AvalonEdit.dll" />
     <Resource Include="packages\AvalonEdit.5.0.4\lib\Net35\ICSharpCode.AvalonEdit.xml" />
     <Content Include="packages\AvalonEdit.5.0.4\lib\Net40\ICSharpCode.AvalonEdit.dll" />

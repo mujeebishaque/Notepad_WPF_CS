@@ -10,8 +10,8 @@
                       GlowBrush="red"
         WindowStartupLocation="CenterScreen"
         Title="Change Your Font" Height="300" Width="310">
+    
     <Grid>
-
         <TextBlock 
             Margin="10 10 0 0"
             FontWeight="DemiBold"

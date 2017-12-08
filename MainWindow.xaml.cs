@@ -1,6 +1,6 @@
 ﻿using MahApps.Metro.Controls;
 using Microsoft.Win32;
-using System;
+using System.IO;
 using System.Windows;
 using System.Windows.Documents;
 
@@ -23,13 +23,10 @@ namespace Notepad
             // Method to save stuff in your text editor
             var saveFileDialog = new SaveFileDialog();
             saveFileDialog.Filter = "Text Files (*.txt)|*.txt";
-            //TextRange range;
-            //range = new TextRange(richtextbox.Document.ContentStart, richtextbox.Document.ContentEnd);
-            //string text = range.Text;
 
             if (saveFileDialog.ShowDialog() == true)
             {
-                //  File.WriteAllText(saveFileDialog.FileName, text);
+                richtextbox.Save(saveFileDialog.FileName);
             }
         }
 
@@ -43,21 +40,16 @@ namespace Notepad
 
         private void MenuItem_Click_5(object sender, RoutedEventArgs e)
         {   /* open */
+
             var openFileDialog = new OpenFileDialog();
-            openFileDialog.DefaultExt = ".txt";
-            openFileDialog.Filter = "Text Files(*.txt)|*.txt";
-            openFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            openFileDialog.DefaultExt = "*.*";
             openFileDialog.Multiselect = false;
-
-            //TextRange range;
-            //range = new TextRange(richtextbox.Document.ContentStart, richtextbox.Document.ContentEnd);
-            //string text = range.Text;
-
 
             if (openFileDialog.ShowDialog() == true)
             {
-                //  richtextbox.Document.Blocks.Clear();
+                richtextbox.Text = File.ReadAllText(openFileDialog.FileName);
             }
+
 
         }
 
@@ -67,18 +59,22 @@ namespace Notepad
             aboutWindow.Show();
         }
 
-        private void MenuItem_Click_7(object sender, RoutedEventArgs e)
-        {
-            /*font size
-            TextRange allText = new TextRange(richtextbox.Document.ContentStart, richtextbox.Document.ContentEnd);
-            allText.ApplyPropertyValue(RichTextBox.FontSizeProperty, FontSize += 1);
-            */
-        }
-
         private void ChangeFont_Click(object sender, RoutedEventArgs e)
         {
             var changeFontWindow = new ChangeFont();
             changeFontWindow.Show();
+        }
+
+        private void CommandBinding_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
+            var saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Text Files (*.txt)|*.txt";
+
+            if (saveFileDialog.ShowDialog() == true)
+            {
+                richtextbox.Save(saveFileDialog.FileName);
+            }
+
         }
     }
 }

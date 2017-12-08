@@ -31,6 +31,10 @@ namespace Notepad
         }
         private void changeFont_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+        }
+
+        private void CommandBinding_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
+        {
 
         }
     }
