@@ -25,6 +25,7 @@
                     Modifiers="Ctrl"
                     Command="Save" />
     </Window.InputBindings>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto" />
@@ -71,10 +72,14 @@
                 <MenuItem Header="Paste"
                           FontWeight="Regular"
                           Click="MenuItem_Click_3" />
-                <MenuItem Header="Change Font"
+                <MenuItem Header="Change Font Family"
                           Name="ChangeFont"
                           FontWeight="Regular"
                           Click="ChangeFont_Click" />
+                <MenuItem Header="Increase Font Size"
+                          Name="increaseFontSize"
+                          Click="increaseFontSize_Click"
+                          />
             </MenuItem>
             <MenuItem Header="About"
                       Margin="5 0 5 0"

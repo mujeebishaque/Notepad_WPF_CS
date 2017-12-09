@@ -36,14 +36,14 @@
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-    
+
         <Button HorizontalAlignment="Center"
                 VerticalAlignment="Bottom"
                 Margin="0 0 0 30"
                 Width="80"
                 Name="changeFont"
-                Click="changeFont_Click">
-                Ok    
+                Click="changeFont_Click"
+                Content="Ok">
         </Button>
         
         

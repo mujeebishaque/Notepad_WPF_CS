@@ -5,11 +5,9 @@ using System.Windows.Media;
 
 namespace Notepad
 {
-    /// <summary>
-    /// Interaction logic for ChangeFont.xaml
-    /// </summary>
     public partial class ChangeFont : MetroWindow, INotifyPropertyChanged
     {
+        public object valueChangeFont;
         private string textFontWin;
         public string TextFontWin
         {
@@ -31,11 +29,9 @@ namespace Notepad
         }
         private void changeFont_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            ((MainWindow)System.Windows.Application.Current.MainWindow).richtextbox.FontFamily = (FontFamily)fontComboFast.SelectedItem;
+            Close();
         }
 
-        private void CommandBinding_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
-        {
-
-        }
     }
 }

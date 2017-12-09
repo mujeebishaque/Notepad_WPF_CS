@@ -17,7 +17,6 @@ namespace Notepad
             InitializeComponent();
             richtextbox.SetValue(Paragraph.LineHeightProperty, 1.0);
         }
-
         private void MenuItem_Click(object sender, RoutedEventArgs e)
         {
             // Method to save stuff in your text editor
@@ -50,7 +49,6 @@ namespace Notepad
                 richtextbox.Text = File.ReadAllText(openFileDialog.FileName);
             }
 
-
         }
 
         private void MenuItem_Click_6(object sender, RoutedEventArgs e)
@@ -65,16 +63,8 @@ namespace Notepad
             changeFontWindow.Show();
         }
 
-        private void CommandBinding_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e)
-        {
-            var saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Text Files (*.txt)|*.txt";
+        private void CommandBinding_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e) { MenuItem_Click(sender, e); }
 
-            if (saveFileDialog.ShowDialog() == true)
-            {
-                richtextbox.Save(saveFileDialog.FileName);
-            }
-
-        }
+        private void increaseFontSize_Click(object sender, RoutedEventArgs e) { richtextbox.FontSize += 1; }
     }
 }
