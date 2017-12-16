@@ -5,6 +5,11 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Notepad", "Notepad.csproj", "{7A904CA8-4354-4E5A-BF14-CBABC6E0934B}"
 EndProject
+Project("{6141683F-8A12-4E36-9623-2EB02B2C2303}") = "Custom Notepad", "Custom Notepad\Custom Notepad.isproj", "{B78A42F6-54AF-4205-AB88-955543C7982C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7A904CA8-4354-4E5A-BF14-CBABC6E0934B} = {7A904CA8-4354-4E5A-BF14-CBABC6E0934B}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		CD_ROM|Any CPU = CD_ROM|Any CPU
@@ -24,6 +29,16 @@ Global
 		{7A904CA8-4354-4E5A-BF14-CBABC6E0934B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7A904CA8-4354-4E5A-BF14-CBABC6E0934B}.SingleImage|Any CPU.ActiveCfg = Release|Any CPU
 		{7A904CA8-4354-4E5A-BF14-CBABC6E0934B}.SingleImage|Any CPU.Build.0 = Release|Any CPU
+		{B78A42F6-54AF-4205-AB88-955543C7982C}.CD_ROM|Any CPU.ActiveCfg = CD_ROM
+		{B78A42F6-54AF-4205-AB88-955543C7982C}.CD_ROM|Any CPU.Build.0 = CD_ROM
+		{B78A42F6-54AF-4205-AB88-955543C7982C}.Debug|Any CPU.ActiveCfg = SingleImage
+		{B78A42F6-54AF-4205-AB88-955543C7982C}.Debug|Any CPU.Build.0 = SingleImage
+		{B78A42F6-54AF-4205-AB88-955543C7982C}.DVD-5|Any CPU.ActiveCfg = DVD-5
+		{B78A42F6-54AF-4205-AB88-955543C7982C}.DVD-5|Any CPU.Build.0 = DVD-5
+		{B78A42F6-54AF-4205-AB88-955543C7982C}.Release|Any CPU.ActiveCfg = SingleImage
+		{B78A42F6-54AF-4205-AB88-955543C7982C}.Release|Any CPU.Build.0 = SingleImage
+		{B78A42F6-54AF-4205-AB88-955543C7982C}.SingleImage|Any CPU.ActiveCfg = SingleImage
+		{B78A42F6-54AF-4205-AB88-955543C7982C}.SingleImage|Any CPU.Build.0 = SingleImage
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

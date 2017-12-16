@@ -89,7 +89,20 @@
                           FontWeight="Regular"
                           Click="MenuItem_Click_6" />
             </MenuItem>
-
+            <MenuItem Header="Syntax Highlighting"
+                      FontWeight="DemiBold"
+                      FontSize="14"
+                      Margin="5 0 5 0">
+                <MenuItem Header="C Sharp"
+                          Name="cSharp"
+                          Click="cSharp_Click" />
+                <MenuItem Header="Php"
+                          Name="php"
+                          Click="php_Click" />
+                <MenuItem Header="C++"
+                          Name="cpp"
+                          Click="cpp_Click" />
+            </MenuItem>
         </Menu>
         <avalonEdit:TextEditor     
             Grid.Row="1"
@@ -103,12 +116,6 @@
             
         
         </avalonEdit:TextEditor>
-        <!--<RichTextBox Grid.Row="1"
-                     Grid.Column="1"
-                     Padding="1"
-                     SpellCheck.IsEnabled="True"
-                     Name="richtextbox">
-        </RichTextBox> -->     
         <StatusBar Grid.Row="2"
                    Padding="5"
                    Grid.Column="0"
