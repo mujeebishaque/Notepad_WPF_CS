@@ -77,7 +77,12 @@ namespace Notepad
         private void cpp_Click(object sender, RoutedEventArgs e)
         {
             richtextbox.SyntaxHighlighting = ICSharpCode.AvalonEdit.Highlighting.HighlightingManager.Instance.GetDefinition("C++");
-
         }
+
+        private void compileAndRun_Click(object sender, RoutedEventArgs e)
+        {
+            var fileSystem = new FileSystem();
+        }
+
     }
 }

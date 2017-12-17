@@ -14,8 +14,10 @@
         SaveWindowPosition="True"
         WindowState="Maximized"
         TitleCaps="False"
+        ResizeMode="CanResizeWithGrip"
         TitlebarHeight="36"
         Title="iNotepad" Height="450" Width="585">
+    
     <Window.CommandBindings>
         <CommandBinding Command="Save"
                         Executed="CommandBinding_Executed" />
@@ -25,6 +27,12 @@
                     Modifiers="Ctrl"
                     Command="Save" />
     </Window.InputBindings>
+    <Controls:MetroWindow.RightWindowCommands>
+        <Controls:WindowCommands>
+            <Button Name="compileAndRun" Click="compileAndRun_Click">Compile And Run</Button>
+        </Controls:WindowCommands>    
+    </Controls:MetroWindow.RightWindowCommands>
+    
     
     <Grid>
         <Grid.RowDefinitions>
