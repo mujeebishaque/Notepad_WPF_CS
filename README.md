@@ -20,6 +20,10 @@ VS 2015
 Any other library or thing to do before running this project?
 No. Just download it, compile it, run it. 
 
+OR
+
+Go to Debug folder, Run Notepad.exe from there.
+
 Can i use it and add to it and make it my editor?
 yes. Do what you want to do.
 
