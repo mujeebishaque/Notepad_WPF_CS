@@ -52,21 +52,28 @@ namespace Notepad
         }
         private void SaveConfiguration(string path)
         {
-            string json = JsonConvert.SerializeObject(path);
-            using (StreamWriter file = File.CreateText(CurrentDir + "SavedConfiguration.json"))
+            if (HasConfigurationFile())
             {
-                JsonSerializer serializer = new JsonSerializer();
-                //serialize object directly into file stream
-                serializer.Serialize(file, json);
+                string json = JsonConvert.SerializeObject(path);
+                using (StreamWriter file = File.CreateText(CurrentDir + "SavedConfiguration.json"))
+                {
+                    JsonSerializer serializer = new JsonSerializer();
+                    //serialize object directly into file stream
+                    serializer.Serialize(file, json);
+                }
             }
         }
         private bool HasSavedCompilerLocation()
         {
             if (HasConfigurationFile())
             {
+
             }
             return false;
         }
-        private void ReadConfiguration() { }
+        private void ReadConfiguration()
+        {
+
+        }
     }
 }

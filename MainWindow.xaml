@@ -32,6 +32,14 @@
             <Button Name="compileAndRun" Click="compileAndRun_Click">Compile And Run</Button>
         </Controls:WindowCommands>    
     </Controls:MetroWindow.RightWindowCommands>
+
+    <Controls:MetroWindow.LeftWindowCommands>
+        <Controls:WindowCommands>
+            <Button Name="IncreaseFontSize" Click="IncreaseFontSize_Click_1">Increase Font Size</Button>
+            <Button Name="DecreaseFontSize" Click="DecreaseFontSize_Click">Decrease Font Size</Button>
+        </Controls:WindowCommands>
+    </Controls:MetroWindow.LeftWindowCommands>
+    
     
     
     <Grid>
@@ -84,10 +92,6 @@
                           Name="ChangeFont"
                           FontWeight="Regular"
                           Click="ChangeFont_Click" />
-                <MenuItem Header="Increase Font Size"
-                          Name="increaseFontSize"
-                          Click="increaseFontSize_Click"
-                          />
             </MenuItem>
             <MenuItem Header="About"
                       Margin="5 0 5 0"

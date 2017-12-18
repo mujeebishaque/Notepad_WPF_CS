@@ -62,7 +62,6 @@ namespace Notepad
 
         private void CommandBinding_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e) { MenuItem_Click(sender, e); }
 
-        private void increaseFontSize_Click(object sender, RoutedEventArgs e) { richtextbox.FontSize += 1; }
 
         private void cSharp_Click(object sender, RoutedEventArgs e)
         {
@@ -83,6 +82,14 @@ namespace Notepad
         {
             var fileSystem = new FileSystem();
         }
+        private void IncreaseFontSize_Click_1(object sender, RoutedEventArgs e)
+        {
+            richtextbox.FontSize += 1;
+        }
 
+        private void DecreaseFontSize_Click(object sender, RoutedEventArgs e)
+        {
+            richtextbox.FontSize -= 1;
+        }
     }
 }
