@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -15,27 +16,30 @@ namespace Notepad
             get { return currentDir; }
             set { currentDir = value; OnPropertyChange(); }
         }
-
-        public FileSystem() { CurrentDir = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location); }
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void OnPropertyChange([CallerMemberName] string caller = "")
+        private string CompilerPath { get; set; }
+        private string ConfigurationFilePath { get; set; }
+        private const string ConfigurationFileName = "SavedConfigration.json";
+        private bool HasSavedCompilerLocation = false;
+        private const string defaultCompilerName = "g++.exe";
+        public FileSystem()
         {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(caller));
+            CurrentDir = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
         }
+
 
         private bool HasCompiler()
         {
             const string extension = "exe";
             const string dir = @"C:\cygwin64\bin\";
-            var myFiles = Directory.GetFiles(dir, "*.*", SearchOption.AllDirectories)
+            var files = Directory.GetFiles(dir, "*.*", SearchOption.AllDirectories)
                  .Where(s => extension.Contains(Path.GetExtension(s)));
-            foreach (var file in myFiles)
+            foreach (var file in files)
             {
-                if (file.Contains("g++.exe"))
+                if (file == defaultCompilerName)
                 {
                     string gccPath = Path.GetFullPath(file);
-                    SaveConfiguration(gccPath);
+                    CompilerPath = gccPath;
+                    SaveConfiguration();
                     return true;
                 }
             }
@@ -44,18 +48,27 @@ namespace Notepad
         private bool HasConfigurationFile()
         {
             var currentFileList = Directory.GetFiles(CurrentDir, "*.json", SearchOption.AllDirectories);
-            foreach (var files in currentFileList)
+            foreach (var file in currentFileList)
             {
-                if (files.Contains("SavedConfiguration.json")) { return true; }
+                if (file == ConfigurationFileName)
+                {
+                    var fileInfo = new FileInfo(file);
+                    if (fileInfo.Length > 0)
+                    {
+                        ConfigurationFilePath = Path.GetFullPath(file);
+                        HasSavedCompilerLocation = true;
+                    }
+                    return true;
+                }
             }
             return false;
         }
-        private void SaveConfiguration(string path)
+        private void SaveConfiguration()
         {
-            if (HasConfigurationFile())
+            if (HasCompiler())
             {
-                string json = JsonConvert.SerializeObject(path);
-                using (StreamWriter file = File.CreateText(CurrentDir + "SavedConfiguration.json"))
+                string json = JsonConvert.SerializeObject(CompilerPath);
+                using (StreamWriter file = File.CreateText(CurrentDir + "/" + ConfigurationFileName))
                 {
                     JsonSerializer serializer = new JsonSerializer();
                     //serialize object directly into file stream
@@ -63,17 +76,24 @@ namespace Notepad
                 }
             }
         }
-        private bool HasSavedCompilerLocation()
-        {
-            if (HasConfigurationFile())
-            {
 
-            }
-            return false;
-        }
         private void ReadConfiguration()
         {
-
+            if (HasSavedCompilerLocation && HasCompiler())
+            {
+                using (var file = File.OpenText(ConfigurationFilePath))
+                using (var reader = new JsonTextReader(file))
+                {
+                    JObject readDataFromJson = (JObject)JToken.ReadFrom(reader);
+                    string alreadySavedFilePath = (string)readDataFromJson;
+                }
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChange([CallerMemberName] string caller = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(caller));
         }
     }
 }

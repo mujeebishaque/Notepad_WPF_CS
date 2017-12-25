@@ -62,7 +62,6 @@ namespace Notepad
 
         private void CommandBinding_Executed(object sender, System.Windows.Input.ExecutedRoutedEventArgs e) { MenuItem_Click(sender, e); }
 
-
         private void cSharp_Click(object sender, RoutedEventArgs e)
         {
             richtextbox.SyntaxHighlighting = ICSharpCode.AvalonEdit.Highlighting.HighlightingManager.Instance.GetDefinition("C#");

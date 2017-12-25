@@ -121,7 +121,9 @@
             Grid.Column="1"
             SyntaxHighlighting="C++"
             Padding="1"
-            FontSize="14"
+            FontSize="16"
+            WordWrap="True"
+            LineNumbersForeground="DarkTurquoise"
             ShowLineNumbers="True"
             Name="richtextbox"
             xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit">
