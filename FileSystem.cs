@@ -1,8 +1,6 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using System;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 
@@ -10,83 +8,68 @@ namespace Notepad
 {
     public class FileSystem : INotifyPropertyChanged
     {
-        private string currentDir = "";
-        public string CurrentDir
-        {
-            get { return currentDir; }
-            set { currentDir = value; OnPropertyChange(); }
-        }
-        private string CompilerPath { get; set; }
-        private string ConfigurationFilePath { get; set; }
-        private const string ConfigurationFileName = "SavedConfigration.json";
-        private bool HasSavedCompilerLocation = false;
+        private string CurrentDirectory;
         private const string defaultCompilerName = "g++.exe";
-        public FileSystem()
+        private string CompilerPath;
+        private const string ConfigurationFileName = "configuration.txt";
+
+        public FileSystem() { CurrentDirectory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location); }
+
+        public void SaveAndRun()
         {
-            CurrentDir = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            var mainWindow = ((MainWindow)System.Windows.Application.Current.MainWindow).richtextbox;
+
+
+            var randomNumber = new Random();
+            int randomFileName = randomNumber.Next(12, 2000);
+            string filePath = CurrentDirectory + @"\" + randomFileName + ".cpp";
+            string allRichText = mainWindow.Text;
+
+            if (File.Exists(filePath))
+            {
+                int anotherRandomName = randomNumber.Next(133, 999);
+                filePath = CurrentDirectory + @"\" + anotherRandomName + ".cpp";
+                File.WriteAllText(filePath, allRichText);
+            }
+            File.WriteAllText(filePath, allRichText);
+            FileSystemInfo infoGrabber = new FileInfo(filePath);
+            string fileName = infoGrabber.Name;
+            RunProgram(fileName);
         }
-
-
-        private bool HasCompiler()
+        public bool HasCompiler()
         {
-            const string extension = "exe";
-            const string dir = @"C:\cygwin64\bin\";
-            var files = Directory.GetFiles(dir, "*.*", SearchOption.AllDirectories)
-                 .Where(s => extension.Contains(Path.GetExtension(s)));
+            const string defaultDirectory = @"C:\cygwin64\bin";
+            var files = Directory.GetFiles(defaultDirectory, "*.exe", SearchOption.AllDirectories);
             foreach (var file in files)
             {
-                if (file == defaultCompilerName)
+                var info = new FileInfo(file);
+                if (info.Name == defaultCompilerName)
                 {
-                    string gccPath = Path.GetFullPath(file);
-                    CompilerPath = gccPath;
-                    SaveConfiguration();
+                    CompilerPath = info.FullName;
                     return true;
                 }
             }
             return false;
         }
-        private bool HasConfigurationFile()
+        private void Configurations()
         {
-            var currentFileList = Directory.GetFiles(CurrentDir, "*.json", SearchOption.AllDirectories);
-            foreach (var file in currentFileList)
+            var fileInfo = new FileInfo(ConfigurationFileName);
+            if (fileInfo.Length > 5) { return; } // if more than 5 chars are there, path is already given
+            if (File.Exists(ConfigurationFileName))
             {
-                if (file == ConfigurationFileName)
-                {
-                    var fileInfo = new FileInfo(file);
-                    if (fileInfo.Length > 0)
-                    {
-                        ConfigurationFilePath = Path.GetFullPath(file);
-                        HasSavedCompilerLocation = true;
-                    }
-                    return true;
-                }
+                //write compiler path to current dir
+                File.WriteAllText(CurrentDirectory + "\\" + ConfigurationFileName, CompilerPath);
             }
-            return false;
         }
-        private void SaveConfiguration()
+        public void RunProgram(string fileName)
         {
+            string alteredName = fileName.Substring(0, fileName.Length - 4);
+            // g++ -o helloworld helloworld.cpp --std=c++14
+            string cmdCommand = "g++ -o " + alteredName + " " + fileName;
+
             if (HasCompiler())
             {
-                string json = JsonConvert.SerializeObject(CompilerPath);
-                using (StreamWriter file = File.CreateText(CurrentDir + "/" + ConfigurationFileName))
-                {
-                    JsonSerializer serializer = new JsonSerializer();
-                    //serialize object directly into file stream
-                    serializer.Serialize(file, json);
-                }
-            }
-        }
-
-        private void ReadConfiguration()
-        {
-            if (HasSavedCompilerLocation && HasCompiler())
-            {
-                using (var file = File.OpenText(ConfigurationFilePath))
-                using (var reader = new JsonTextReader(file))
-                {
-                    JObject readDataFromJson = (JObject)JToken.ReadFrom(reader);
-                    string alreadySavedFilePath = (string)readDataFromJson;
-                }
+                System.Diagnostics.Process.Start("cmd.exe", cmdCommand);
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;

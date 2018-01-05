@@ -80,6 +80,7 @@ namespace Notepad
         private void compileAndRun_Click(object sender, RoutedEventArgs e)
         {
             var fileSystem = new FileSystem();
+            fileSystem.SaveAndRun();
         }
         private void IncreaseFontSize_Click_1(object sender, RoutedEventArgs e)
         {

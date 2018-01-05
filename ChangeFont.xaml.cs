@@ -19,6 +19,7 @@ namespace Notepad
             InitializeComponent();
             fontComboFast.ItemsSource = Fonts.SystemFontFamilies;
             TextFontWin = "Change Your Font using the Combo Box below.";
+            //((MainWindow)System.Windows.Application.Current.MainWindow).richtextbox.FontFamily = (FontFamily)"Consolas";
             DataContext = this;
         }
 
