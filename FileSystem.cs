@@ -1,9 +1,9 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-
 namespace Notepad
 {
     public class FileSystem : INotifyPropertyChanged
@@ -12,14 +12,11 @@ namespace Notepad
         private const string defaultCompilerName = "g++.exe";
         private string CompilerPath;
         private const string ConfigurationFileName = "configuration.txt";
-
         public FileSystem() { CurrentDirectory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location); }
 
         public void SaveAndRun()
         {
             var mainWindow = ((MainWindow)System.Windows.Application.Current.MainWindow).richtextbox;
-
-
             var randomNumber = new Random();
             int randomFileName = randomNumber.Next(12, 2000);
             string filePath = CurrentDirectory + @"\" + randomFileName + ".cpp";
@@ -54,8 +51,9 @@ namespace Notepad
         private void Configurations()
         {
             var fileInfo = new FileInfo(ConfigurationFileName);
-            if (fileInfo.Length > 5) { return; } // if more than 5 chars are there, path is already given
-            if (File.Exists(ConfigurationFileName))
+            // if more than 5 chars are there, path is already given
+            if (File.Exists(ConfigurationFileName) && fileInfo.Length > 5) { return; }
+            if (File.Exists(ConfigurationFileName) && fileInfo.Length == 0)
             {
                 //write compiler path to current dir
                 File.WriteAllText(CurrentDirectory + "\\" + ConfigurationFileName, CompilerPath);
@@ -65,12 +63,26 @@ namespace Notepad
         {
             string alteredName = fileName.Substring(0, fileName.Length - 4);
             // g++ -o helloworld helloworld.cpp --std=c++14
-            string cmdCommand = "g++ -o " + alteredName + " " + fileName;
+            const string flag = "--std=c++14";
+            string cmdCommand = "g++ -o " + alteredName + " " + fileName + " " + flag;
+            string runCommand = "./" + alteredName + ";" + "pause;";
 
-            if (HasCompiler())
-            {
-                System.Diagnostics.Process.Start("cmd.exe", cmdCommand);
-            }
+            Process cmd = new Process();
+            cmd.StartInfo.FileName = "cmd.exe";
+            cmd.StartInfo.RedirectStandardInput = true;
+            cmd.StartInfo.Arguments = cmdCommand;
+            cmd.StartInfo.RedirectStandardOutput = true;
+            cmd.StartInfo.CreateNoWindow = false;
+            cmd.StartInfo.UseShellExecute = false;
+            cmd.Start();
+
+            cmd.StandardInput.WriteLine(cmdCommand);
+            cmd.StandardInput.Flush();
+            cmd.StandardInput.Close();
+            cmd.WaitForExit();
+
+            Process.Start("powershell", runCommand);
+
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChange([CallerMemberName] string caller = "")
