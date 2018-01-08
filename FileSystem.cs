@@ -61,14 +61,17 @@ namespace Notepad
             cmd.WaitForExit();
 
             Process.Start("powershell", runCommand);
-
+            SaveConfigurations();
         }
-        public bool HasCompiler()
+        public void SaveConfigurations()
+        {
+            FindCompiler();
+        }
+        public bool FindCompiler()
         {
             if (!HasCompilerPathSaved())
             {
-
-                const string defaultDirectory = @"C:\";
+                const string defaultDirectory = @"C:\cygwin64";
                 var files = Directory.GetFiles(defaultDirectory, "*.exe", SearchOption.AllDirectories);
                 foreach (var file in files)
                 {
@@ -76,15 +79,15 @@ namespace Notepad
                     if (info.Name == defaultCompilerName)
                     {
                         CompilerPath = info.FullName;
-                        HasCompilerPathSaved();
+                        SaveCompilerPath();
                         return true;
                     }
                 }
-                return false;
             }
             if (HasCompilerPathSaved())
             {
                 CompilerPath = retrieveCompilerLocation();
+                return true;
             }
             return false;
         }
@@ -96,11 +99,7 @@ namespace Notepad
             {
                 return true;
             }
-            else
-            {
-                SaveCompilerPath();
-                return true;
-            }
+            return false;
         }
         public void SaveCompilerPath()
         {
