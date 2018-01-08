@@ -33,13 +33,14 @@ Yeah, i added it today at 1/9/2018. Works fine but you need to have set global e
 # Extra Features?
 it's not a feature but just an idea. Idk, i wanted to save compiler path in configuration file so i did. It finds the compiler in C directory, cygwin64 folder and put's the full path in configuration file which is located at current application directory.
 Nothing fancy, no use but it was just for me to learn how to save configurations. 
-# Note
+# Note-to-self
 I should rather use .json or application settings to save the settings.
 Learn MVVM Pattern too. Code is so not readable in this format. Also, there is ZERO usage of LINQ which is bad. 
 ___
 After this project
+___
 My C# Level : --intermediate.
 ___ 
 Linq Level: --Beginner.
 ___
-I will not work on this editor anymore. I did what i wanted. Acheived what i desired. I consider this project closed.
+> I will not work on this editor anymore. I did what i wanted. Acheived what i desired. I consider this project closed.
