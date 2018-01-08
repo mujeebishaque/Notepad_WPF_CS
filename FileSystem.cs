@@ -12,8 +12,13 @@ namespace Notepad
         private const string defaultCompilerName = "g++.exe";
         private string CompilerPath;
         private const string ConfigurationFileName = "configuration.txt";
-        public FileSystem() { CurrentDirectory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location); }
-
+        private string ConfigurationFileNamePath;
+        private string[] readCompilerLocation = { };
+        public FileSystem()
+        {
+            CurrentDirectory = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location);
+            ConfigurationFileNamePath = CurrentDirectory + @"\" + ConfigurationFileName;
+        }
         public void SaveAndRun()
         {
             var mainWindow = ((MainWindow)System.Windows.Application.Current.MainWindow).richtextbox;
@@ -32,32 +37,6 @@ namespace Notepad
             FileSystemInfo infoGrabber = new FileInfo(filePath);
             string fileName = infoGrabber.Name;
             RunProgram(fileName);
-        }
-        public bool HasCompiler()
-        {
-            const string defaultDirectory = @"C:\cygwin64\bin";
-            var files = Directory.GetFiles(defaultDirectory, "*.exe", SearchOption.AllDirectories);
-            foreach (var file in files)
-            {
-                var info = new FileInfo(file);
-                if (info.Name == defaultCompilerName)
-                {
-                    CompilerPath = info.FullName;
-                    return true;
-                }
-            }
-            return false;
-        }
-        private void Configurations()
-        {
-            var fileInfo = new FileInfo(ConfigurationFileName);
-            // if more than 5 chars are there, path is already given
-            if (File.Exists(ConfigurationFileName) && fileInfo.Length > 5) { return; }
-            if (File.Exists(ConfigurationFileName) && fileInfo.Length == 0)
-            {
-                //write compiler path to current dir
-                File.WriteAllText(CurrentDirectory + "\\" + ConfigurationFileName, CompilerPath);
-            }
         }
         public void RunProgram(string fileName)
         {
@@ -83,6 +62,57 @@ namespace Notepad
 
             Process.Start("powershell", runCommand);
 
+        }
+        public bool HasCompiler()
+        {
+            if (!HasCompilerPathSaved())
+            {
+
+                const string defaultDirectory = @"C:\";
+                var files = Directory.GetFiles(defaultDirectory, "*.exe", SearchOption.AllDirectories);
+                foreach (var file in files)
+                {
+                    var info = new FileInfo(file);
+                    if (info.Name == defaultCompilerName)
+                    {
+                        CompilerPath = info.FullName;
+                        HasCompilerPathSaved();
+                        return true;
+                    }
+                }
+                return false;
+            }
+            if (HasCompilerPathSaved())
+            {
+                CompilerPath = retrieveCompilerLocation();
+            }
+            return false;
+        }
+        private bool HasCompilerPathSaved()
+        {
+            var fileInfo = new FileInfo(ConfigurationFileNamePath);
+            // if more than 5 chars are there, path is already given
+            if (File.Exists(ConfigurationFileNamePath) && fileInfo.Length > 5)
+            {
+                return true;
+            }
+            else
+            {
+                SaveCompilerPath();
+                return true;
+            }
+        }
+        public void SaveCompilerPath()
+        {
+            File.WriteAllText(ConfigurationFileNamePath, CompilerPath);
+        }
+        private string retrieveCompilerLocation()
+        {
+            if (File.Exists(ConfigurationFileNamePath))
+            {
+                readCompilerLocation = File.ReadAllLines(ConfigurationFileNamePath);
+            }
+            return String.Join("", readCompilerLocation);
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChange([CallerMemberName] string caller = "")
