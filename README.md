@@ -20,13 +20,21 @@ VS 2015
 Any other library or thing to do before running this project?
 No. Just download it, compile it, run it. 
 
-OR
+# OR
 
 Go to Debug folder, Run Notepad.exe from there.
 
 Can i use it and add to it and make it my editor?
 yes. Do what you want to do.
 
-Will you be improving it further?
-Yes. I need to add certain more features like CompileAndRun button/option Only for C++. 
-Might do syntax completion or something similar. 
+# Compile And Run Feature
+Yeah, i added it today at 1/9/2018. Works fine but you need to have set global env. path in windows settings. It uses --std=C++14 flag by default. You can easily change the source and make it use --std=c++1z || 17;
+
+# Extra Features?
+it's not a feature but just an idea. Idk, i wanted to save compiler path in configuration file so i did. It finds the compiler in C directory, cygwin64 folder and put's the full path in configuration file which is located at current application directory.
+Nothing fancy, no use but it was just for me to learn how to save configurations. 
+# Note
+I should rather use .json or application settings to save the settings.
+Learn MVVM Pattern too. Code is so not readable in this format. Also, there is ZERO usage of LINQ which is bad. 
+My C# Level : --intermediate. 
+Linq Level: --Beginner.
