@@ -14,7 +14,7 @@ It is fast and you can use it as your regular text editor or maybe a bettter C++
 ![alt text](https://github.com/mujeebishaque/Notepad_WPF_CS/blob/master/Resources/Screenshot%20(180).png)
 
 Requirements:
-
+___
 VS 2015
 
 Any other library or thing to do before running this project?
@@ -36,5 +36,10 @@ Nothing fancy, no use but it was just for me to learn how to save configurations
 # Note
 I should rather use .json or application settings to save the settings.
 Learn MVVM Pattern too. Code is so not readable in this format. Also, there is ZERO usage of LINQ which is bad. 
-My C# Level : --intermediate. 
+___
+After this project
+My C# Level : --intermediate.
+___ 
 Linq Level: --Beginner.
+___
+I will not work on this editor anymore. I did what i wanted. Acheived what i desired. I consider this project closed.
